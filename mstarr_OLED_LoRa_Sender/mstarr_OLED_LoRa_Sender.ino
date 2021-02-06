@@ -3,9 +3,6 @@
  ****************************************/
 #include "heltec.h"
 #include "images.h"
-<<<<<<< Updated upstream
-
-=======
 #include "DHTesp.h"
 #include "ESP32Ticker.h"
 #include <TinyGPS++.h>
@@ -42,16 +39,12 @@ SoftwareSerial ssGPS(RXPin, TXPin); // Assigns pins to GPS module
 /****************************************
  * Configure LoRa ESP32
  ****************************************/
->>>>>>> Stashed changes
 #define BAND    915E6  //you can set band here directly,e.g. 868E6,915E6
 
 unsigned int counter = 0;
 String rssi = "RSSI --";
 String packSize = "--";
 String packet ;
-
-<<<<<<< Updated upstream
-=======
 
 void setup()
 {
@@ -80,10 +73,10 @@ void setup()
 }
 
 void loop(){
-   float converted = 0.00;
-   //Read data and store it to variables hum and temp
-   hum = dht.getHumidity();
-   temp= dht.getTemperature();
+  float converted = 0.00;
+  //Read data and store it to variables hum and temp
+  hum = dht.getHumidity();
+  temp= dht.getTemperature();
 
   //Fahrenheit
   //T(°F) = T(°C) × 9/5 + 32
@@ -152,7 +145,6 @@ void sendData(String tx_data) {
   delay(1000); 
 }
 
->>>>>>> Stashed changes
 void logo()
 {
   Heltec.display->clear();
@@ -171,41 +163,7 @@ void gps_OLED()
   Heltec.display->drawString(0, 30,"Time: " +String(tinyGPS.time.hour()-6) +(":")
   +String(tinyGPS.time.minute()) +(":") +String(tinyGPS.time.second()));
   Heltec.display->display();
-<<<<<<< Updated upstream
   delay(1000);
-}
-
-void loop()
-{
-  Heltec.display->clear();
-  Heltec.display->setTextAlignment(TEXT_ALIGN_LEFT);
-  Heltec.display->setFont(ArialMT_Plain_10);
-  
-  Heltec.display->drawString(0, 0, "Sending packet: ");
-  Heltec.display->drawString(90, 0, String(counter));
-  Heltec.display->display();
-
-  // send packet
-  LoRa.beginPacket();
-  
-/*
- * LoRa.setTxPower(txPower,RFOUT_pin);
- * txPower -- 0 ~ 20
- * RFOUT_pin could be RF_PACONFIG_PASELECT_PABOOST or RF_PACONFIG_PASELECT_RFO
- *   - RF_PACONFIG_PASELECT_PABOOST -- LoRa single output via PABOOST, maximum output 20dBm
- *   - RF_PACONFIG_PASELECT_RFO     -- LoRa single output via RFO_HF / RFO_LF, maximum output 14dBm
-*/
-  LoRa.setTxPower(14,RF_PACONFIG_PASELECT_PABOOST);
-  LoRa.print("hello ");
-  LoRa.print(counter);
-  LoRa.endPacket();
-
-  counter++;
-  digitalWrite(LED, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(1000);                       // wait for a second
-  digitalWrite(LED, LOW);    // turn the LED off by making the voltage LOW
-  delay(1000);                       // wait for a second
-=======
 }
 
 void printGPSInfo()
@@ -255,5 +213,4 @@ String getGPSTime()
     s_second = String(tinyGPS.time.second());
   }
   return String(String(tinyGPS.time.hour()) + ":" + s_minute + ":" + s_second);
->>>>>>> Stashed changes
 }
