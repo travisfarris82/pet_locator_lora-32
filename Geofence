@@ -1,0 +1,8 @@
+if(( Latitude > 41.765000 && Latitude < 41.765300) && (Longitude > -87.977800 && Longitude < -87.977200))
+
+digitalWrite(LED, HIGH); // project is inside the geofence
+
+// else
+
+// digitalWrite(LED, LOW) ; // indicator that it is outside the geofence
+
